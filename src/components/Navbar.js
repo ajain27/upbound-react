@@ -7,7 +7,7 @@ import { CampaignConsumer } from '../contexts/CampaignContext';
 function Navbar() {
 
     function filterCards(e) {
-        const filteredData = cardData.filter(cards => {
+        const filteredData = cardData && cardData.filter(cards => {
             return cards.campaignId === e.target.value
         })
         console.log(filteredData);
