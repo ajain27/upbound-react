@@ -4,8 +4,7 @@ import { FaListUl } from 'react-icons/fa';
 import cardData from '../model/cards/cards.json'
 import { CampaignConsumer } from '../contexts/CampaignContext';
 
-function Navbar(props) {
-
+function Navbar() {
 
     function filterCards(e) {
         const filteredData = cardData.filter(cards => {
@@ -14,6 +13,7 @@ function Navbar(props) {
         console.log(filteredData);
         return filteredData;
     }
+
     return (
         <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light nav-color mt-2 mb-4">
@@ -26,7 +26,7 @@ function Navbar(props) {
                                     (options) => {
                                        return options.map(campaign => {
                                             console.log(campaign);
-                                            return <option value={campaign.id}>{campaign.campaignName}</option>
+                                            return <option key={campaign.id} value={campaign.id}>{campaign.campaignName}</option>
                                         })
                                     }
                                 }

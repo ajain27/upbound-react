@@ -6,7 +6,6 @@ import { FaDatabase } from 'react-icons/fa';
 
 import '../styles/cards.scss';
 import cardData from '../model/cards/cards.json'
-import campaignData from '../model/campaigns/campaigns.json'
 
 function Cards() {
     const url = '../model/cards/cards.json'
@@ -23,9 +22,8 @@ function Cards() {
     }
 
     return (
-        <>   
-         {/* <Navbar options = {campaignData}/> */}
-            <div className="container w-100 m-auto">            
+        <>
+            <div className="container w-100 m-auto">
                 <div className="row d-flex">
                     {
                         cards ? cards.map(card =>
