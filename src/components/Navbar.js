@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/navbar.scss'
 import { FaListUl } from 'react-icons/fa';
 import cardData from '../model/cards/cards.json'
 import { CampaignConsumer } from '../contexts/CampaignContext';
 
-function Navbar() {
-
+function Navbar({setFilteredCards}) {
     function filterCards(e) {
+        console.log(e.target.value);
         const filteredData = cardData && cardData.filter(cards => {
-            return cards.campaignId === e.target.value
+            return cards.campaignId === e.target.value;
         })
-        console.log(filteredData);
-        return filteredData;
+        setFilteredCards(filteredData);
     }
 
     return (
@@ -25,7 +24,6 @@ function Navbar() {
                                 {
                                     (options) => {
                                        return options.map(campaign => {
-                                            console.log(campaign);
                                             return <option key={campaign.id} value={campaign.id}>{campaign.campaignName}</option>
                                         })
                                     }

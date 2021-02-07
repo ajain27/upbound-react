@@ -7,18 +7,18 @@ import { FaDatabase } from 'react-icons/fa';
 import '../styles/cards.scss';
 import cardData from '../model/cards/cards.json'
 
-function Cards() {
+function Cards({filteredCards}) {
     const url = '../model/cards/cards.json'
     const [cards, setCards] = useState(cardData)
-
-    useEffect(() => {
+    const filteredData = {filteredCards};
+    useEffect(() => {        
         setTimeout(() => {
             getCards();
         }, 1000)
-    }, [])
+    }, [filteredData])
 
     function getCards() {
-        setCards(cardData)
+        setCards(filteredData.filteredCards);
     }
 
     return (
