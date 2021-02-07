@@ -1,0 +1,14 @@
+@import './base.scss';
+
+.navbar {
+    background-color: $iconColor;
+    height: 60px;
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.dropdown {
+    border: 1px solid rgba(0, 0, 0, .125);
+    height: 40px;
+    width: 200px;
+    border-radius: 5px;
+}

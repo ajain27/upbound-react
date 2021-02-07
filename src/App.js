@@ -1,11 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
 import Cards from './components/Cards';
+import Navbar from './components/Navbar';
+import { CampaignProvider } from './contexts/CampaignContext';
+import campaignData from './model/campaigns/campaigns.json'
 
 function App() {
   return (
     <div className="App">
-     <Cards/>
+      <CampaignProvider value={campaignData}>
+         <Navbar/>
+      </CampaignProvider>     
+      <Cards/>
     </div>
   );
 }

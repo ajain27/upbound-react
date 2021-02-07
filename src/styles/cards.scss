@@ -1,0 +1,18 @@
+@import './base';
+
+.basecolor {
+    color: $basecolor;
+}
+
+.card-footer {
+    align-items: center;
+}
+
+.icon-font {
+    font-size: $iconsFont;
+    color: $iconColor;
+}
+
+.status {
+    text-transform: capitalize !important
+  }
