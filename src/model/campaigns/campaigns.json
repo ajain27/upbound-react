@@ -1,4 +1,8 @@
 [
+  {
+    "id": "all",
+    "campaignName": "All Campaigns"
+  },
     {
       "id": "CN201701182",
       "campaignName": "Campaign 1182"

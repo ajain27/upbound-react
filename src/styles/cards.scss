@@ -11,8 +11,24 @@
 .icon-font {
     font-size: $iconsFont;
     color: $iconColor;
+    position: relative;
+    top: -2px;
 }
 
 .status {
     text-transform: capitalize !important
+  }
+
+  small {
+      font-size: 18px !important;
+  }
+
+  .progress-complete {
+      background-color: orange !important;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    small {
+        font-size: 15px !important;
+    }
   }

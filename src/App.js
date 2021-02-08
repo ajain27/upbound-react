@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App">
       <CampaignProvider value={campaignData}>
-         <Navbar setFilteredCards={setFilteredCards}/>
-      </CampaignProvider>     
-      <Cards filteredCards={filteredCards}/>
+        <Navbar setFilteredCards={setFilteredCards} />
+      </CampaignProvider>
+      <Cards filteredCards={filteredCards} />
     </div>
   );
 }

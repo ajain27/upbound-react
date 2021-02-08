@@ -7,14 +7,14 @@ import { FaDatabase } from 'react-icons/fa';
 import '../styles/cards.scss';
 import cardData from '../model/cards/cards.json'
 
-function Cards({filteredCards}) {
+function Cards({ filteredCards }) {
     const url = '../model/cards/cards.json'
     const [cards, setCards] = useState(cardData)
-    const filteredData = {filteredCards};
-    useEffect(() => {        
+    const filteredData = { filteredCards };
+    useEffect(() => {
         setTimeout(() => {
             getCards();
-        }, 1000)
+        }, 3000)
     }, [filteredData])
 
     function getCards() {
@@ -41,10 +41,12 @@ function Cards({filteredCards}) {
                                                 <small className="status">{card.currentWorkflow}</small>
                                             </div>
                                         </div>
-                                        <div className="progress" style={{ height: "8px" }}>
+                                        {card.currentWorkflow !== 'saved' ? <div className="progress" style={{ height: "8px" }}>
                                             <div className="progress-bar" role="progressbar" ></div>
-                                        </div>
-
+                                        </div> : <div className="progress-complete" style={{ height: "8px" }}>
+                                                <div className="progress-bar" role="progressbar" ></div>
+                                            </div>
+                                        }
                                     </div>
                                     <div className="card-footer text-muted d-flex text-center p-0" style={{ height: "35px" }}>
                                         <div className="col-4 basecolor">
