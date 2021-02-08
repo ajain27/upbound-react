@@ -3,22 +3,28 @@ import Navbar from './Navbar';
 import { MdPeople } from 'react-icons/md';
 import { FaEye } from 'react-icons/fa';
 import { FaDatabase } from 'react-icons/fa';
+import { ClipLoader } from "react-spinners";
 
 import '../styles/cards.scss';
 import cardData from '../model/cards/cards.json'
 
 function Cards({ filteredCards }) {
-    const url = '../model/cards/cards.json'
-    const [cards, setCards] = useState(cardData)
+    const [cards, setCards] = useState(cardData);
+    const [showLoader, setShowLoader] = useState(true);
+
     const filteredData = { filteredCards };
     useEffect(() => {
         setTimeout(() => {
+            setShowLoader(true);
             getCards();
-        }, 3000)
+            setShowLoader(false);
+        }, 2000)
     }, [filteredData])
 
     function getCards() {
+        // setShowLoader(true);
         setCards(filteredData.filteredCards);
+        // setShowLoader(false);
     }
 
     return (
@@ -26,7 +32,7 @@ function Cards({ filteredCards }) {
             <div className="container w-100 m-auto">
                 <div className="row d-flex">
                     {
-                        cards ? cards.map(card =>
+                        showLoader ? <ClipLoader size={100} color="#dc5b28" className="mt-2 m-auto" /> : cards && cards.map(card =>
                             <div className="col-lg-4 col-md-4 col-sm-1 m-auto" key={card.title}>
                                 <div className="card mb-4" key={card.id}>
                                     <img className="card-img-top" src={card.primaryMediaUrl} alt="Card image cap" />
@@ -64,7 +70,7 @@ function Cards({ filteredCards }) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>) : []
+                            </div>)
                     }
 
                 </div>

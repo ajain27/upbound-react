@@ -7,7 +7,7 @@ import { CampaignConsumer } from '../contexts/CampaignContext';
 function Navbar({ setFilteredCards }) {
     function filterCards(e) {
         let filteredData;
-        let selectedCampaign = e.target.value;
+        let selectedCampaign = e && e.target && e.target.value ? e.target.value : '';
         if (selectedCampaign === 'all') {
             filteredData = cardData;
             setFilteredCards(filteredData);
@@ -41,7 +41,7 @@ function Navbar({ setFilteredCards }) {
                         <div className="col text-left">
                             <FaListUl />
                         </div>
-                    </div>
+                    </div>                  
                 </div>
             </nav>
         </>
