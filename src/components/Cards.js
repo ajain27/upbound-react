@@ -14,12 +14,12 @@ function Cards({ filteredCards }) {
 
     const filteredData = { filteredCards };
     useEffect(() => {
+        setShowLoader(true);
         setTimeout(() => {
-            setShowLoader(true);
             getCards();
             setShowLoader(false);
         }, 1000)
-    }, [filteredData])
+    }, [filteredData.filteredCards])
 
     function getCards() {
         setCards(filteredData.filteredCards);
@@ -31,10 +31,10 @@ function Cards({ filteredCards }) {
                 <div className="row d-flex">
                     {
                         showLoader ? <ClipLoader size={100} color="#dc5b28" className="mt-2 m-auto" /> : cards && cards.map(card =>
-                            <div className="col-lg-4 col-md-4 col-sm-1 m-auto" key={card.id}>
+                            <div className="col-lg-4 col-md-4 col-sm-1 m-auto" key={card.cardTitle}>
                                 <div className="card mb-4">
                                     <img className="card-img-top" src={card.primaryMediaUrl} alt="Card image cap" />
-                                    <div className="card-body">
+                                    <div className="card-body"> 
                                         <h5 className="card-title">{card.cardTitle}</h5>
                                         <div className="row basecolor">
                                             <div className="col-6 text-left">
@@ -54,7 +54,7 @@ function Cards({ filteredCards }) {
                                             </div>
                                         }
                                     </div>
-                                    <div className="card-footer text-muted d-flex text-center p-0" style={{ height: "35px" }}>
+                                    <div className="card-footer text-muted d-flex text-center p-0" style={{ height: "35px" }} key={card.title}>
                                         <div className="col-4 basecolor">
                                             <FaDatabase className="icon-font mr-1" />
                                             <small>{card.listOfPlans[0].price.currencySymbol}</small>
