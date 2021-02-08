@@ -12,7 +12,7 @@ function App() {
       <CampaignProvider value={campaignData}>
         <Navbar setFilteredCards={setFilteredCards} />
       </CampaignProvider>
-      <Cards filteredCards={filteredCards} />
+      <Cards filteredCards={filteredCards}/>
     </div>
   );
 }

@@ -18,13 +18,11 @@ function Cards({ filteredCards }) {
             setShowLoader(true);
             getCards();
             setShowLoader(false);
-        }, 2000)
+        }, 1000)
     }, [filteredData])
 
     function getCards() {
-        // setShowLoader(true);
         setCards(filteredData.filteredCards);
-        // setShowLoader(false);
     }
 
     return (
@@ -33,8 +31,8 @@ function Cards({ filteredCards }) {
                 <div className="row d-flex">
                     {
                         showLoader ? <ClipLoader size={100} color="#dc5b28" className="mt-2 m-auto" /> : cards && cards.map(card =>
-                            <div className="col-lg-4 col-md-4 col-sm-1 m-auto" key={card.title}>
-                                <div className="card mb-4" key={card.id}>
+                            <div className="col-lg-4 col-md-4 col-sm-1 m-auto" key={card.id}>
+                                <div className="card mb-4">
                                     <img className="card-img-top" src={card.primaryMediaUrl} alt="Card image cap" />
                                     <div className="card-body">
                                         <h5 className="card-title">{card.cardTitle}</h5>
@@ -47,9 +45,11 @@ function Cards({ filteredCards }) {
                                                 <small className="status">{card.currentWorkflow}</small>
                                             </div>
                                         </div>
-                                        {card.currentWorkflow !== 'saved' ? <div className="progress" style={{ height: "8px" }}>
-                                            <div className="progress-bar" role="progressbar" ></div>
-                                        </div> : <div className="progress-complete" style={{ height: "8px" }}>
+                                        {card.currentWorkflow !== 'saved' ?
+                                            <div className="progress" style={{ height: "8px" }}>
+                                                <div className="progress-bar" role="progressbar" ></div>
+                                            </div>
+                                            : <div className="progress-complete" style={{ height: "8px" }}>
                                                 <div className="progress-bar" role="progressbar" ></div>
                                             </div>
                                         }
@@ -70,7 +70,8 @@ function Cards({ filteredCards }) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>)
+                            </div>
+                        )
                     }
 
                 </div>
