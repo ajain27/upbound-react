@@ -17,7 +17,8 @@ function Cards({ filteredCards }) {
     const [showClickedMenu, setShowClickedMenu] = useState([]);
     const [availableWorkFlow, setAvailableWorkFlow] = useState([]);
     let [spinnerColor, setSpinnerColor] = useState("#dc5b28");
-
+    
+    // custom CSS for the spinner control
     const override = css`
     display: block;
     margin: 0 auto;
@@ -40,7 +41,7 @@ function Cards({ filteredCards }) {
             setError('Something went wrong', err);
         }
     }
-
+    // Display the dropdown for individual card. Isolating the state for every card
     function editCard(card) {
         const currentTitle = card.cardTitle;
         showClickedMenu[currentTitle] = !showClickedMenu[currentTitle];
@@ -48,6 +49,7 @@ function Cards({ filteredCards }) {
         setAvailableWorkFlow(filterWorkflows(card));
     }
 
+    // Displays only the work flows which the card is not in currently. 
     function filterWorkflows(card) {
         let availableWorkFlows = filters.filter(v => {
             return v !== card.currentWorkflow;
