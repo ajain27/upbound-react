@@ -52,7 +52,11 @@ function Cards({ filteredCards }) {
     }
 
     const updateWorkFlow = (card, filter) => {
-        card.currentWorkflow = filter;
+        setShowLoader(true);
+        setTimeout(()=> {
+            card.currentWorkflow = filter ? filter : card.currentWorkflow;
+             setShowLoader(false);
+        }, 5000)
         setShowEditMenu(false);
     }
 
