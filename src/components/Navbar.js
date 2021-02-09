@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/navbar.scss'
 import { FaListUl } from 'react-icons/fa';
-import cardData from '../model/cards/cards.json'
+import { get } from '../adapters/index'
 import { CampaignConsumer } from '../contexts/CampaignContext';
 
 function Navbar({ setFilteredCards }) {
+
+    const [cards, setCards] = useState([])
+
+    useEffect(() => {
+        setTimeout(()=> {
+            getCards();
+        }, 1000)
+    }, [])
+
+    const url = 'http://localhost:5000/cards';
+    function getCards() {
+        get(url).then(card => {
+            setCards(card.data);
+        })
+    }
+
     function filterCards(e) {
         let filteredData;
+        let cardData = cards;
         let selectedCampaign = e && e.target && e.target.value ? e.target.value : '';
         if (selectedCampaign === 'all') {
             filteredData = cardData;

@@ -27,6 +27,46 @@
       background-color: orange !important;
   }
 
+  .edit-card {
+    position: absolute;
+    top: 10px;
+    z-index: 9;
+    color: $editCardColor;
+    font-size: 20px;
+    left: 85%;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .card:hover .edit-card {
+    opacity: 1;
+    background-color: white;
+    padding: 5px;
+  }
+
+  .action-items {
+    border: 1px solid rgba(0, 0, 0, 0.125) !important;
+    width: 120px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    position: absolute !important;
+    top: 35px !important;
+    left: 56% !important;
+    background: white !important;
+}
+.action-items li {
+  border-bottom: $borderColor;
+  padding: 5px;
+  text-transform: capitalize;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.action-items li:hover {
+  background-color: $background;
+}
+
+
   @media only screen and (max-width: 1024px) {
     small {
         font-size: 15px !important;
