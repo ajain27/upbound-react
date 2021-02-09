@@ -7,6 +7,7 @@ import cardData from './model/cards/cards.json'
 
 function App() {
   const [filteredCards, setFilteredCards] = useState(cardData);
+
   return (
     <div className="App">
       <CampaignProvider value={campaignData}>

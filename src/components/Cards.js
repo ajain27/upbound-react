@@ -5,19 +5,27 @@ import { FaDatabase } from 'react-icons/fa';
 import { FaPencilAlt } from 'react-icons/fa';
 import { ClipLoader } from "react-spinners";
 import '../styles/cards.scss';
-import filters from '../model/filters/workflow.json'
+import { css } from "@emotion/core";
+import filters from '../model/filters/workflow.json';
 
 function Cards({ filteredCards }) {
     const filteredData = { filteredCards };
-
     const [cards, setCards] = useState([]);
     const [showLoader, setShowLoader] = useState(true);
     const [showEditMenu, setShowEditMenu] = useState(false);
     const [showClickedMenu, setShowClickedMenu] = useState([]);
-    const [workFlow, setWorkFlow] = useState([])
-    
+    const [availableWorkFlow, setAvailableWorkFlow] = useState([]);
+    let [spinnerColor, setSpinnerColor] = useState("#dc5b28");
+
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    `;
+
+    const fetchCards = 'http://localhost:5000/cards';
+
     useEffect(() => {
-        setWorkFlow(filters);
+        setAvailableWorkFlow(filters);
         setShowLoader(true);
         setTimeout(() => {
             getCards();
@@ -30,44 +38,41 @@ function Cards({ filteredCards }) {
     }
 
     function editCard(card) {
-        console.log(card);
         const currentTitle = card.cardTitle;
         showClickedMenu[currentTitle] = !showClickedMenu[currentTitle];
         setShowEditMenu(showClickedMenu[currentTitle])
-        setWorkFlow(filterWorkflows(card));
+        setAvailableWorkFlow(filterWorkflows(card));
     }
 
     function filterWorkflows(card) {
-        console.log(card.cardTitle + '-->' + card.currentWorkflow);
-       let availableWorkFlows =  filters.filter(v => {
+        let availableWorkFlows = filters.filter(v => {
             return v !== card.currentWorkflow;
         })
-        // console.log(availableWorkFlows);
         return availableWorkFlows;
     }
 
-    // const updateWorkFlow = (filter) => {
-    //     setCards({...cards, currentWorkflow: filter});
-    //     console.log(cards);
-    // }
+    const updateWorkFlow = (card, filter) => {
+        card.currentWorkflow = filter;
+        setShowEditMenu(false);
+    }
 
     return (
         <>
             <div className="container w-100 m-auto">
                 <div className="row d-flex">
                     {
-                        showLoader ? <ClipLoader size={100} color="#dc5b28" className="mt-2" /> : cards && cards.map(card =>
+                        showLoader ? <ClipLoader size={100} color={spinnerColor} css={override} /> : cards && cards.map(card =>
                             <div className="col-lg-4 col-md-4 col-sm-1 m-auto" key={card.cardTitle}>
                                 <div className="card mb-4" id={card.cardTitle}>
                                     <FaPencilAlt className="edit-card" onClick={editCard.bind(null, card)} />
                                     <img className="card-img-top" src={card.primaryMediaUrl} alt="Card image cap" />
                                     {
-                                        showClickedMenu[card.cardTitle] === true ?
+                                        showClickedMenu[card.cardTitle] === true && showEditMenu ?
                                             <div>
                                                 <ul className="action-items">
                                                     {
-                                                        workFlow.map(filter =>
-                                                            <li key={filter} onClick={updateWorkFlow.bind(null, filter)}>{filter}</li>
+                                                        availableWorkFlow.map(filter =>
+                                                            <li key={filter} onClick={updateWorkFlow.bind(null, card, filter)}>{filter}</li>
                                                         )
                                                     }
                                                 </ul>

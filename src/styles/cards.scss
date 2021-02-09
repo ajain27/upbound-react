@@ -66,9 +66,20 @@
   background-color: $background;
 }
 
+[ClipLoader] {
+  position: absolute !important;
+  z-index: 99 !important;
+  left: 50% !important;
+  top: 50% !important;
+}
+
 
   @media only screen and (max-width: 1024px) {
     small {
         font-size: 15px !important;
+    }
+
+    .action-items {
+      left: 62% !important;
     }
   }
