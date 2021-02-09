@@ -24,8 +24,7 @@ function Navbar({ setFilteredCards }) {
             })
         } catch(error) {
             setError('Unable to fetch the cards', error);
-        }
-        
+        }        
     }
 
     function filterCards(e) {
